@@ -1,6 +1,6 @@
-//file name should be same as contract file name
-const Kryptobirds = artifacts.require("KryptoBirdz");
+//abi file name should be same as contract name
+const  KryptoB= artifacts.require("KryptoBirdz");
 
 module.exports = function (deployer) {
-  deployer.deploy(Kryptobirds);
+  deployer.deploy(KryptoB);
 };
