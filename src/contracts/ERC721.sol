@@ -13,6 +13,18 @@ contract ERC721{
     //mapping from owner to number of owned tokens
     mapping(address=>uint) private _OwnedTokenCount;
 
+    function balanceOf(address _owner) public view returns(uint){
+        require(_owner!=address(0),"Owner query for non-existent token");
+        return _OwnedTokenCount[_owner];
+    }
+
+    function ownerOf(uint _tokenId) external view returns(address){
+        address owner=_tokenOwner[_tokenId];
+        require(owner!=address(0),"Owner query for non-existent token");
+        return owner;
+
+    }
+
     function _exists(uint tokenID) internal view returns(bool){
         //setting address of nft owner to check the mapping of address 
         //from tokenOwner at the tokenID
@@ -20,7 +32,7 @@ contract ERC721{
         return owner!=address(0);
     }
     // minting function
-    function _mint(address to,uint tokenID) internal {
+    function _mint(address to,uint tokenID) internal virtual {
         //require that the address is not zero.
         require(to!=address(0),"ERC721: minting to the zero address.");
         //require that the token does not already exist.
@@ -30,6 +42,6 @@ contract ERC721{
         //keep track the each address that is minting and adding the count 1
         _OwnedTokenCount[to]+=1;
 
-        emit Transfer(address(0), to,tokenID);
+        emit Transfer(address(0),to,tokenID);
     }
 }
