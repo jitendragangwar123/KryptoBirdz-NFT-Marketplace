@@ -24,6 +24,7 @@ contract ERC721Enumerable is ERC721{
         return _ownedTokens[owner][index];
 
     }
+    //Override the smart contract if you have multiple smart contracts by using override(Contract Name)
     function _mint(address to,uint tokenID) internal override(ERC721){
         super._mint(to,tokenID);
         _addTokensToAllTokenEnumeration(tokenID);
@@ -36,15 +37,16 @@ contract ERC721Enumerable is ERC721{
         _allTokens.push(tokenID);
     }
     
+
     function _addTokensToOwnerEnumeration(address to,uint tokenID) private {
         _ownedTokensIndex[tokenID]=_ownedTokens[to].length;
         _ownedTokens[to].push(tokenID);
 
     }
+    
 
     //return the total supply of the _allTokens array
     function totalSupply() public view returns(uint){
         return _allTokens.length;
     }
-
 }
