@@ -13,12 +13,15 @@ contract ERC721{
     //mapping from owner to number of owned tokens
     mapping(address=>uint) private _OwnedTokenCount;
 
+    //mapping from tokenID to the owner
+    mapping(uint=>address) private _tokenApprovals;
+
     function balanceOf(address _owner) public view returns(uint){
         require(_owner!=address(0),"Owner query for non-existent token");
         return _OwnedTokenCount[_owner];
     }
 
-    function ownerOf(uint _tokenId) external view returns(address){
+    function ownerOf(uint _tokenId) public view returns(address){
         address owner=_tokenOwner[_tokenId];
         require(owner!=address(0),"Owner query for non-existent token");
         return owner;
@@ -43,5 +46,13 @@ contract ERC721{
         _OwnedTokenCount[to]+=1;
 
         emit Transfer(address(0),to,tokenID);
+    }
+
+    function transferFrom(address _from,address _to,uint _tokenID) external payable{
+        require(address(0)!=_to,"Error-ERC721 transfer from to the zero address!");
+        require(ownerOf(_tokenID)==_from,"Trying to transfer the token from address does not own!");
+        _OwnedTokenCount[_to]+=1;
+        _OwnedTokenCount[_from]-=1;
+        _tokenOwner[_tokenID]=_to;
     }
 }
