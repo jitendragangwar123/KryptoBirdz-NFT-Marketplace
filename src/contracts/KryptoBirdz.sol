@@ -19,3 +19,7 @@ contract KryptoBirdz is ERC721Connector{
    }
 }
 
+
+
+
+
