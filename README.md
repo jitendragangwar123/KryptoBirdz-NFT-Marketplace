@@ -28,7 +28,10 @@ KryptoB.ownerOf(1) //who is the owner of NFT
 Krypto.totalSupply() //return to total count of tokens
 KryptoB.tokenOfOwnerByIndex('0xc127cab0b5321c4ac1c6220f3ecf26787b9bcf0e',1)
 KryptoB.tokenByIndex(1) //return count of tokens by using index
-
+```
+3. To verify the smart contract on Etherscan :-
+```shell
+truffle run verify contractName@deployedAddress --network goerli
 ```
 3. Metamask.io (hooked up on the browser)
 
