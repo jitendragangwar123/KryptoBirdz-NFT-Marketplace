@@ -9,7 +9,7 @@ Make sure you are in the source file.
 git clone https://github.com/truffle suits/ganache.git
 cd ganache
 npm install //to run the ganache blockchain
-ganahe-cli // to start the ganache blockchain
+ganache-cli // to start the ganache blockchain
 ```
 
 2. Truffle (global installation) :- It’s a developing and testing tool.
